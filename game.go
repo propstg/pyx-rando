@@ -7,13 +7,13 @@ import (
 )
 
 const (
-	EventHandDeal = "hd"
+	EventHandDeal        = "hd"
 	EventGameStateChange = "gsc"
-	GameStatePlaying = "p"
-	GameStateJudging = "j"
-	GameStateLobby = "l"
-	PlayerStatusJudge = "sj"
-	PlayerStatusJudging = "sjj"
+	GameStatePlaying     = "p"
+	GameStateJudging     = "j"
+	GameStateLobby       = "l"
+	PlayerStatusJudge    = "sj"
+	PlayerStatusJudging  = "sjj"
 )
 
 func startGame(networkService INetworkService, name string, secondsToWaitBeforeVoting int) {

@@ -7,7 +7,7 @@ import (
 
 func MapLongPollData(jsonPayload string) []LongPollEvent {
 	var result []LongPollEvent
-	if ! strings.HasPrefix(jsonPayload, "[") {
+	if !strings.HasPrefix(jsonPayload, "[") {
 		jsonPayload = "[" + jsonPayload + "]"
 	}
 	json.Unmarshal([]byte(jsonPayload), &result)

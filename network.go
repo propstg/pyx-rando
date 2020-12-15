@@ -40,29 +40,29 @@ func (n *NetworkService) PlayCard(card WhiteCard) {
 	n.doGenericAjaxCall(fmt.Sprintf("o=pc&gid=%s&cid=%d&s=22", n.gameId, card.CardId))
 }
 
-func (n* NetworkService) SelectWinningCard(card WhiteCard) {
+func (n *NetworkService) SelectWinningCard(card WhiteCard) {
 	n.doGenericAjaxCall(fmt.Sprintf("o=js&gid=%s&cid=%d&s=42", n.gameId, card.CardId))
 }
 
-func (n* NetworkService) GetGameInfo() GameInfo {
+func (n *NetworkService) GetGameInfo() GameInfo {
 	body, _ := n.doGenericAjaxCall(fmt.Sprintf("o=ggi&gid=%s&s=63", n.gameId))
 	return MapGetGameInfoData(string(body))
 }
 
-func (n* NetworkService) doGenericAjaxCall(payload string) ([]byte, *http.Response) {
+func (n *NetworkService) doGenericAjaxCall(payload string) ([]byte, *http.Response) {
 	return n.doGenericServletCall(payload, "/AjaxServlet")
 }
 
-func (n* NetworkService) doLongPollCall() ([]byte, *http.Response) {
+func (n *NetworkService) doLongPollCall() ([]byte, *http.Response) {
 	return n.doGenericServletCall("", "/LongPollServlet")
 }
 
-func (n* NetworkService) doGenericServletCall(payload string, endpoint string) ([]byte, *http.Response) {
+func (n *NetworkService) doGenericServletCall(payload string, endpoint string) ([]byte, *http.Response) {
 	fmt.Printf("Sending %s to %s...\n", payload, endpoint)
 	method := "POST"
 	payloadWrapper := strings.NewReader(payload)
 
-	client := &http.Client {
+	client := &http.Client{
 	}
 	req, err := http.NewRequest(method, fmt.Sprintf("%s%s", n.domain, endpoint), payloadWrapper)
 
