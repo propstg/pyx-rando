@@ -9,6 +9,7 @@ import (
 const (
 	EventHandDeal        = "hd"
 	EventGameStateChange = "gsc"
+	EventGameKicked      = "k"
 	GameStatePlaying     = "p"
 	GameStateJudging     = "j"
 	GameStateLobby       = "l"
@@ -37,6 +38,7 @@ func startGame(networkService INetworkService, name string, secondsToWaitBeforeV
 				}
 				log.Printf("Added %d cards to hand.\n", len(event.Hand))
 			case EventGameStateChange:
+				log.Println("Getting game info...")
 				gameInfo := networkService.GetGameInfo()
 				areWeCzar = areWeTheCzar(gameInfo, name)
 				log.Printf("New game state: %s\n", event.GameState)
@@ -55,6 +57,8 @@ func startGame(networkService INetworkService, name string, secondsToWaitBeforeV
 				} else if event.GameState == GameStateLobby {
 					cardsInHand = []WhiteCard{}
 				}
+			case EventGameKicked:
+				return
 			}
 		}
 	}

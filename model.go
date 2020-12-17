@@ -18,9 +18,11 @@ type WhiteCard struct {
 }
 
 type GameInfo struct {
-	PlayerInfo []struct {
-		Status string `json:"st"`
-		Name   string `json:"N"`
-		Score  int    `json:"sc"`
-	} `json:"pi"`
+	PlayerInfo []PlayerInfo `json:"pi"`
+}
+
+type PlayerInfo struct {
+	Status string `json:"st"`
+	Name   string `json:"N"`
+	Score  int    `json:"sc"`
 }
